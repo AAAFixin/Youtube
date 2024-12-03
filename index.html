@@ -59,12 +59,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Website</title>
     <style>
-        /* Basic styling for the counter */
+        /* Basic styling for the page */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
         #donation-counter {
-            font-size: 24px;
+            font-size: 32px;
             font-weight: bold;
             color: #1e7e34;
             margin-top: 20px;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            height: 50px;
+            width: 200px;
+            border: 3px solid #1e7e34;
+            border-radius: 10px;
+            background-color: #e8f5e9;
+        }
+
+        /* Style for the filling animation */
+        #donation-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background-color: #4CAF50;
+            width: 0%; /* Start at 0% and will animate */
+            transition: width 1s ease-out;
+        }
+
+        /* Style for the counter text */
+        #counter-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+            color: white;
+            z-index: 1;
         }
 
         #donate-button {
@@ -74,6 +110,9 @@
             text-align: center;
             font-size: 16px;
             cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            margin-top: 30px;
         }
     </style>
 </head>
@@ -82,9 +121,10 @@
     <h1>Welcome to My Website!</h1>
     <p>Help me reach my $5000 goal!</p>
 
-    <!-- Display the current donation amount -->
+    <!-- Donation counter with animation -->
     <div id="donation-counter">
-        Total Donations: $<span id="counter">0</span> / $5000
+        <div id="donation-bar"></div>
+        <div id="counter-text">$<span id="counter">0</span> / $5000</div>
     </div>
 
     <!-- Button to simulate a donation -->
@@ -95,9 +135,17 @@
         const goalAmount = 5000;
         let currentAmount = localStorage.getItem('donatedAmount') ? parseFloat(localStorage.getItem('donatedAmount')) : 0;
 
-        // Display the current amount on the counter
+        // Update the counter display and donation bar
         function updateCounter() {
-            document.getElementById('counter').textContent = currentAmount.toFixed(2);
+            const counterElement = document.getElementById('counter');
+            const donationBar = document.getElementById('donation-bar');
+            const percentage = (currentAmount / goalAmount) * 100;
+
+            // Update the counter number
+            counterElement.textContent = currentAmount.toFixed(2);
+
+            // Animate the donation bar width (percentage of goal)
+            donationBar.style.width = percentage + "%";
         }
 
         // Simulate a donation of $50
@@ -115,7 +163,3 @@
 </body>
 </html>
 
-        <a href="https://www.instagram.com/yourusername" target="_blank">Instagram</a>
-    </footer>
-</body>
-</html>
