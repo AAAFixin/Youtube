@@ -58,6 +58,7 @@
             animation: moveSnowblower 10s linear infinite;
             width: 220px;
             filter: drop-shadow(3px 3px 10px rgba(0, 0, 0, 0.4));
+            transform-origin: center;
         }
 
         /* Continuous movement of snowblower from left to right */
@@ -132,6 +133,13 @@
             transform: scale(1.1);
         }
 
+        /* Flip animation */
+        @keyframes flipAnimation {
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+            100% { transform: rotate(360deg); }
+        }
+
     </style>
 </head>
 <body>
@@ -150,10 +158,10 @@
         <div class="amount-raised" id="amountRaised">$3000 Saved</div> <!-- Static value set here -->
 
         <!-- Cartoon Snowblower image -->
-        <img src="https://cdn.vectorstock.com/i/preview-1x/96/80/snow-blower-or-thrower-cartoon-retro-woodcut-vector-36039680.jpg" alt="Cartoon Snowblower" class="snowblower">
+        <img src="https://cdn.vectorstock.com/i/preview-1x/96/80/snow-blower-or-thrower-cartoon-retro-woodcut-vector-36039680.jpg" alt="Cartoon Snowblower" class="snowblower" id="snowblower">
 
         <!-- Button to simulate flipping snowblowers -->
-        <button class="flip-button" onclick="updateProgress()">Flip a Snowblower! +$100</button>
+        <button class="flip-button" onclick="flipSnowblower()">Flip a Snowblower! +$100</button>
     </div>
 
     <script>
@@ -161,9 +169,22 @@
         let currentAmount = 3000; // Static starting value (set this to your preferred amount)
         const goalAmount = 5000; // Static goal amount (hard-coded goal)
 
-        // Update progress bar and text
-        function updateProgress() {
-            // Prevent further progress if goal is reached
+        // Flip snowblower and simulate snow being blown
+        function flipSnowblower() {
+            const snowblower = document.getElementById('snowblower');
+
+            // Apply the flip animation to the snowblower
+            snowblower.style.animation = 'flipAnimation 2s ease';
+
+            // After the flip animation, clear it to allow future flips
+            setTimeout(() => {
+                snowblower.style.animation = '';
+            }, 2000);
+
+            // Add snowflakes to simulate snow being blown
+            createSnowflakes();
+
+            // Increase the amount saved and update the progress
             if (currentAmount < goalAmount) {
                 currentAmount += 100; // Simulate flipping a snowblower for $100
 
@@ -174,9 +195,6 @@
                 // Update the amount saved text
                 const amountRaised = document.getElementById('amountRaised');
                 amountRaised.innerHTML = `$${currentAmount} Saved`;
-
-                // Add animated snowflakes dynamically
-                createSnowflakes();
             }
         }
 
@@ -186,8 +204,8 @@
                 let snowflake = document.createElement('div');
                 snowflake.classList.add('snow-particle');
 
-                // Randomize the position and animation properties of snowflakes
-                snowflake.style.left = `${Math.random() * 100}%`;
+                // Position the snowflakes near the snowblower's direction
+                snowflake.style.left = `${50 + Math.random() * 10}%`;
                 snowflake.style.animationDuration = `${Math.random() * 6 + 3}s`; // Random speed
                 snowflake.style.animationDelay = `${Math.random() * 2}s`; // Random delay before appearing
 
