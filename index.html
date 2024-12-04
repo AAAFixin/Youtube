@@ -102,8 +102,8 @@
         /* Snowflakes animation */
         .snow-particle {
             position: absolute;
-            width: 12px;
-            height: 12px;
+            width: 16px; /* Slightly larger snowflakes */
+            height: 16px; /* Slightly larger snowflakes */
             background-color: #fff;
             border-radius: 50%;
             animation: driftSnow 6s linear infinite;
@@ -111,7 +111,7 @@
 
         @keyframes driftSnow {
             0% { opacity: 0.8; transform: translateX(0) translateY(0); }
-            100% { opacity: 0; transform: translateX(150px) translateY(250px); }
+            100% { opacity: 0; transform: translateX(150px) translateY(300px); }
         }
 
         /* Fun "flip" button */
@@ -199,14 +199,14 @@
 
         // Function to create snowflakes
         function createSnowflakes() {
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < 20; i++) {  // Increased number of snowflakes
                 let snowflake = document.createElement('div');
                 snowflake.classList.add('snow-particle');
 
-                // Position the snowflakes near the snowblower's direction
-                snowflake.style.left = `${50 + Math.random() * 10}%`;
-                snowflake.style.animationDuration = `${Math.random() * 6 + 3}s`; // Random speed
-                snowflake.style.animationDelay = `${Math.random() * 2}s`; // Random delay before appearing
+                // Randomize snowflakes position
+                snowflake.style.left = `${Math.random() * 100}%`; // Snowflakes across full width
+                snowflake.style.animationDuration = `${Math.random() * 4 + 4}s`; // Snowflakes fall at varying speeds
+                snowflake.style.animationDelay = `${Math.random() * 2}s`; // Random delay before snowflakes appear
 
                 document.body.appendChild(snowflake);
 
