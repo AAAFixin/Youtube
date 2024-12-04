@@ -83,7 +83,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animated Goal Tracker - Snowblower Theme</title>
+    <title>Cartoon Snowblower Flipping Tracker</title>
     <style>
         /* Basic reset */
         * {
@@ -93,12 +93,13 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background-color: #b3e0ff;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #a2dff7; /* Light blue */
             overflow: hidden;
+            color: #333;
         }
 
-        /* Snowy background */
+        /* Snowfall background with animated snow */
         .snowfall {
             position: absolute;
             top: 0;
@@ -115,7 +116,7 @@
             to { transform: translateY(100%); }
         }
 
-        /* Goal tracker container */
+        /* Tracker container */
         .tracker-container {
             position: relative;
             max-width: 800px;
@@ -124,69 +125,93 @@
             padding: 20px;
             background-color: #fff;
             border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
             overflow: hidden;
+            border: 3px dashed #55aaff;
         }
 
-        /* Snowblower image */
+        /* Cartoon Snowblower */
         .snowblower {
             position: absolute;
-            top: -100px;
+            top: -150px;
             left: 50%;
             transform: translateX(-50%);
-            animation: blowSnow 5s linear infinite;
-            z-index: 10;
-            width: 200px;
+            animation: blowSnow 4s infinite linear;
+            width: 220px;
+            filter: drop-shadow(3px 3px 10px rgba(0, 0, 0, 0.4));
         }
 
         @keyframes blowSnow {
-            0% { transform: translateX(-50%) translateY(-100px) rotate(0deg); }
-            50% { transform: translateX(50%) translateY(50px) rotate(10deg); }
-            100% { transform: translateX(-50%) translateY(-100px) rotate(-10deg); }
+            0% { transform: translateX(-50%) translateY(-150px) rotate(0deg); }
+            25% { transform: translateX(-30%) translateY(-120px) rotate(5deg); }
+            50% { transform: translateX(30%) translateY(-100px) rotate(-5deg); }
+            75% { transform: translateX(-10%) translateY(-80px) rotate(5deg); }
+            100% { transform: translateX(-50%) translateY(-150px) rotate(0deg); }
         }
 
         /* Progress bar container */
         .progress-container {
-            background: #ddd;
+            background: #f0f0f0;
             border-radius: 10px;
             margin: 20px 0;
-            height: 30px;
+            height: 40px;
             position: relative;
             overflow: hidden;
         }
 
         .progress-bar {
             height: 100%;
-            background: #4caf50;
+            background: #ff66cc; /* Bright pink for a cartoonish effect */
             width: 0%;
             border-radius: 10px;
             transition: width 1s ease-in-out;
         }
 
+        /* Title and amount raised */
         .goal-text {
-            font-size: 1.5em;
+            font-size: 1.8em;
             font-weight: bold;
+            color: #ff66cc;
             margin-bottom: 20px;
         }
 
         .amount-raised {
-            font-size: 1.2em;
-            margin-top: 10px;
+            font-size: 1.5em;
+            margin-top: 20px;
+            color: #333;
         }
 
-        /* Snow particles animation */
+        /* Snowflakes animation */
         .snow-particle {
             position: absolute;
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
             background-color: #fff;
             border-radius: 50%;
-            animation: driftSnow 5s linear infinite;
+            animation: driftSnow 6s linear infinite;
         }
 
         @keyframes driftSnow {
-            0% { opacity: 0.5; transform: translateX(0) translateY(0); }
-            100% { opacity: 0; transform: translateX(100px) translateY(200px); }
+            0% { opacity: 0.8; transform: translateX(0) translateY(0); }
+            100% { opacity: 0; transform: translateX(150px) translateY(250px); }
+        }
+
+        /* Fun "flip" button */
+        .flip-button {
+            background-color: #ff66cc;
+            color: #fff;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .flip-button:hover {
+            transform: scale(1.1);
         }
 
     </style>
@@ -196,41 +221,42 @@
     <!-- Snowfall background -->
     <div class="snowfall"></div>
 
-    <!-- Goal Tracker Container -->
+    <!-- Tracker container -->
     <div class="tracker-container">
-        <h1 class="goal-text">Help Us Reach Our $5000 Goal!</h1>
+        <h1 class="goal-text">How Much Have I Saved Flipping Snowblowers?</h1>
 
         <div class="progress-container">
             <div class="progress-bar" id="progressBar"></div>
         </div>
 
-        <div class="amount-raised" id="amountRaised">$0 Raised</div>
+        <div class="amount-raised" id="amountRaised">$0 Saved</div>
 
-        <!-- Snowblower animation -->
-        <img src="https://www.example.com/snowblower.png" alt="Snowblower" class="snowblower">
+        <!-- Cartoon Snowblower image -->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Cartoon_Snowblower.png" alt="Cartoon Snowblower" class="snowblower">
 
-        <button onclick="updateProgress()">Donate $100</button>
+        <!-- Button to simulate flipping snowblowers -->
+        <button class="flip-button" onclick="updateProgress()">Flip a Snowblower! +$100</button>
     </div>
 
     <script>
         // Initial values
         let currentAmount = 0;
-        const goalAmount = 5000;
+        const goalAmount = 5000; // Goal for how much saved
 
         // Update progress bar and text
         function updateProgress() {
             if (currentAmount < goalAmount) {
-                currentAmount += 100; // Simulate a donation
+                currentAmount += 100; // Simulate flipping a snowblower for $100
 
-                // Update the progress bar width
+                // Update progress bar width
                 const progressBar = document.getElementById('progressBar');
                 progressBar.style.width = `${(currentAmount / goalAmount) * 100}%`;
 
-                // Update the amount raised text
+                // Update the amount saved text
                 const amountRaised = document.getElementById('amountRaised');
-                amountRaised.innerHTML = `$${currentAmount} Raised`;
+                amountRaised.innerHTML = `$${currentAmount} Saved`;
 
-                // Add snowflakes dynamically
+                // Add animated snowflakes dynamically
                 createSnowflakes();
             }
         }
@@ -241,88 +267,23 @@
                 let snowflake = document.createElement('div');
                 snowflake.classList.add('snow-particle');
 
-                // Randomize the position of the snowflakes
+                // Randomize the position and animation properties of snowflakes
                 snowflake.style.left = `${Math.random() * 100}%`;
-                snowflake.style.animationDuration = `${Math.random() * 5 + 2}s`; // Random drift speed
+                snowflake.style.animationDuration = `${Math.random() * 6 + 3}s`; // Random speed
                 snowflake.style.animationDelay = `${Math.random() * 2}s`; // Random delay before appearing
 
                 document.body.appendChild(snowflake);
 
-                // Remove snowflakes after they drift
+                // Remove snowflakes after animation completes
                 setTimeout(() => {
                     snowflake.remove();
-                }, 7000); // Match this with the duration of the animation
+                }, 6000); // Match the duration of the animation
             }
         }
     </script>
 
 </body>
 </html>
-    <footer>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Website</title>
-    <style>
-        /* Basic styling for the page */
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-        }
 
-        #donation-counter {
-            font-size: 32px;
-            font-weight: bold;
-            color: #1e7e34;
-            margin-top: 20px;
-            display: inline-block;
-            position: relative;
-            overflow: hidden;
-            height: 50px;
-            width: 200px;
-            border: 3px solid #1e7e34;
-            border-radius: 10px;
-            background-color: #e8f5e9;
-        }
-
-        /* Style for the filling animation */
-        #donation-bar {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            background-color: #4CAF50;
-            width: 0%; /* Start at 0% and will animate */
-            transition: width 1s ease-out;
-        }
-
-        /* Style for the counter text */
-        #counter-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 20px;
-            color: white;
-            z-index: 1;
-        }
-
-        #donate-button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-            font-size: 16px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            margin-top: 30px;
-        }
-    </style>
-</head>
-<body>
 </html>
 
