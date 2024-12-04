@@ -80,7 +80,7 @@
         .progress-bar {
             height: 100%;
             background: #ff0000; /* Red for a bold effect */
-            width: 0%;
+            width: 60%; /* Hard-coded progress bar width */
             border-radius: 10px;
             transition: width 1s ease-in-out;
         }
@@ -147,7 +147,7 @@
             <div class="progress-bar" id="progressBar"></div>
         </div>
 
-        <div class="amount-raised" id="amountRaised">$0 Saved</div>
+        <div class="amount-raised" id="amountRaised">$3000 Saved</div> <!-- Static value set here -->
 
         <!-- Cartoon Snowblower image -->
         <img src="https://cdn.vectorstock.com/i/preview-1x/96/80/snow-blower-or-thrower-cartoon-retro-woodcut-vector-36039680.jpg" alt="Cartoon Snowblower" class="snowblower">
@@ -158,11 +158,12 @@
 
     <script>
         // Initial values
-        let currentAmount = 0;
-        const goalAmount = 5000; // Goal for how much saved
+        let currentAmount = 3000; // Static starting value (set this to your preferred amount)
+        const goalAmount = 5000; // Static goal amount (hard-coded goal)
 
         // Update progress bar and text
         function updateProgress() {
+            // Prevent further progress if goal is reached
             if (currentAmount < goalAmount) {
                 currentAmount += 100; // Simulate flipping a snowblower for $100
 
