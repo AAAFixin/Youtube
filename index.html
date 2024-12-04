@@ -53,8 +53,8 @@
         /* Smaller Cartoon Snowblower */
         .snowblower {
             position: absolute;
-            top: 50%;
-            left: -180px; /* Slightly adjusted to keep within view */
+            top: 50%; /* Positioned in the middle of the screen */
+            left: 0%; /* Start from the far left */
             width: 150px; /* Reduced size of snowblower */
             filter: drop-shadow(3px 3px 10px rgba(0, 0, 0, 0.4));
             transform-origin: center;
@@ -62,7 +62,7 @@
 
         /* Continuous movement of snowblower from left to right */
         @keyframes moveSnowblower {
-            0% { left: -180px; }
+            0% { left: 0%; }
             50% { left: 50%; transform: translateX(-50%); }
             100% { left: 100%; transform: translateX(-50%); }
         }
