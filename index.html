@@ -1,85 +1,206 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAAFixin Official Website</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Cartoon Snowblower Flipping Tracker</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #a2dff7; /* Light blue */
+            overflow: hidden;
+            color: #333;
+        }
+
+        /* Snowfall background with animated snow */
+        .snowfall {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://www.transparenttextures.com/patterns/snow.png');
+            opacity: 0.3;
+            animation: snowFall 3s linear infinite;
+        }
+
+        @keyframes snowFall {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(100%); }
+        }
+
+        /* Tracker container */
+        .tracker-container {
+            position: relative;
+            max-width: 800px;
+            margin: 100px auto;
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: 3px dashed #55aaff;
+        }
+
+        /* Cartoon Snowblower */
+        .snowblower {
+            position: absolute;
+            top: -150px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: blowSnow 4s infinite linear;
+            width: 220px;
+            filter: drop-shadow(3px 3px 10px rgba(0, 0, 0, 0.4));
+        }
+
+        @keyframes blowSnow {
+            0% { transform: translateX(-50%) translateY(-150px) rotate(0deg); }
+            25% { transform: translateX(-30%) translateY(-120px) rotate(5deg); }
+            50% { transform: translateX(30%) translateY(-100px) rotate(-5deg); }
+            75% { transform: translateX(-10%) translateY(-80px) rotate(5deg); }
+            100% { transform: translateX(-50%) translateY(-150px) rotate(0deg); }
+        }
+
+        /* Progress bar container */
+        .progress-container {
+            background: #f0f0f0;
+            border-radius: 10px;
+            margin: 20px 0;
+            height: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: #ff66cc; /* Bright pink for a cartoonish effect */
+            width: 0%;
+            border-radius: 10px;
+            transition: width 1s ease-in-out;
+        }
+
+        /* Title and amount raised */
+        .goal-text {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #ff66cc;
+            margin-bottom: 20px;
+        }
+
+        .amount-raised {
+            font-size: 1.5em;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        /* Snowflakes animation */
+        .snow-particle {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: driftSnow 6s linear infinite;
+        }
+
+        @keyframes driftSnow {
+            0% { opacity: 0.8; transform: translateX(0) translateY(0); }
+            100% { opacity: 0; transform: translateX(150px) translateY(250px); }
+        }
+
+        /* Fun "flip" button */
+        .flip-button {
+            background-color: #ff66cc;
+            color: #fff;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .flip-button:hover {
+            transform: scale(1.1);
+        }
+
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#videos">Videos</a>
-            <a href="#contact">Contact</a>
-        </nav>
 
-      </header>
+    <!-- Snowfall background -->
+    <div class="snowfall"></div>
 
-    <section id="home">
-        <div class="banner">
+    <!-- Tracker container -->
+    <div class="tracker-container">
+        <h1 class="goal-text">How Much Have I Saved Flipping Snowblowers?</h1>
 
-<style>
-    .navbar {
-        position: sticky;
-        top: 0;
-        background-color: #333;
-        color: white;
-        padding: 15px;
-        text-align: center;
-    }
-    .navbar a {
-        color: white;
-        padding: 10px 20px;
-        text-decoration: none;
-    }
-</style>
-
-<div class="navbar">
-    <a href="#">Home</a>
-    <a href="#">About</a>
-    <a href="#">Shop</a>
-    <a href="#">Contact</a>
-</div>
-
-            
-            <h1>AAAFixin Official Website</h1>
-            <p>Welcome to my official website!</p>
-            <a href="https://www.youtube.com/yourchannel" target="_blank">Visit My YouTube</a>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
         </div>
-    </section>
 
-    <section id="about">
-        <h2>About Me</h2>
-        <p>This is where you can tell your story and about your channel.</p>
-    </section>
+        <div class="amount-raised" id="amountRaised">$0 Saved</div>
 
-    <section id="videos">
-        <h2>Latest Videos</h2>
-        <div class="video-gallery">
-            <!-- Example of embedding a YouTube video -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/yourvideoid" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-    </section>
+        <!-- Cartoon Snowblower image -->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Cartoon_Snowblower.png" alt="Cartoon Snowblower" class="snowblower">
 
-    <a href="https://gumroad.com/yourproduct" target="_blank">
-  <button>Buy My Merch</button>
-</a>
+        <!-- Button to simulate flipping snowblowers -->
+        <button class="flip-button" onclick="updateProgress()">Flip a Snowblower! +$100</button>
+    </div>
 
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p>If you would like to collaborate or have questions, feel free to reach out!</p>
-        <form action="mailto:youremail@example.com" method="post" enctype="text/plain">
-            <input type="email" name="email" placeholder="Your Email" required><br>
-            <textarea name="message" placeholder="Your Message" required></textarea><br>
-            <input type="submit" value="Send Message">
-        </form>
-    </section>
-</Footer>
-    
+    <script>
+        // Initial values
+        let currentAmount = 0;
+        const goalAmount = 5000; // Goal for how much saved
 
+        // Update progress bar and text
+        function updateProgress() {
+            if (currentAmount < goalAmount) {
+                currentAmount += 100; // Simulate flipping a snowblower for $100
 
+                // Update progress bar width
+                const progressBar = document.getElementById('progressBar');
+                progressBar.style.width = `${(currentAmount / goalAmount) * 100}%`;
+
+                // Update the amount saved text
+                const amountRaised = document.getElementById('amountRaised');
+                amountRaised.innerHTML = `$${currentAmount} Saved`;
+
+                // Add animated snowflakes dynamically
+                createSnowflakes();
+            }
+        }
+
+        // Function to create snowflakes
+        function createSnowflakes() {
+            for (let i = 0; i < 5; i++) {
+                let snowflake = document.createElement('div');
+                snowflake.classList.add('snow-particle');
+
+                // Randomize the position and animation properties of snowflakes
+                snowflake.style.left = `${Math.random() * 100}%`;
+                snowflake.style.animationDuration = `${Math.random() * 6 + 3}s`; // Random speed
+                snowflake.style.animationDelay = `${Math.random() * 2}s`; // Random delay before appearing
+
+                document.body.appendChild(snowflake);
+
+                // Remove snowflakes after animation completes
+                setTimeout(() => {
+                    snowflake.remove();
+                }, 6000); // Match the duration of the animation
+            }
+        }
+    </script>
+
+</body>
 </html>
-
