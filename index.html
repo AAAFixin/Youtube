@@ -53,20 +53,18 @@
         /* Cartoon Snowblower */
         .snowblower {
             position: absolute;
-            top: -150px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: blowSnow 4s infinite linear;
+            top: 50%;
+            left: -250px;
+            animation: moveSnowblower 10s linear infinite;
             width: 220px;
             filter: drop-shadow(3px 3px 10px rgba(0, 0, 0, 0.4));
         }
 
-        @keyframes blowSnow {
-            0% { transform: translateX(-50%) translateY(-150px) rotate(0deg); }
-            25% { transform: translateX(-30%) translateY(-120px) rotate(5deg); }
-            50% { transform: translateX(30%) translateY(-100px) rotate(-5deg); }
-            75% { transform: translateX(-10%) translateY(-80px) rotate(5deg); }
-            100% { transform: translateX(-50%) translateY(-150px) rotate(0deg); }
+        /* Continuous movement of snowblower from left to right */
+        @keyframes moveSnowblower {
+            0% { left: -250px; }
+            50% { left: 50%; transform: translateX(-50%); }
+            100% { left: 100%; transform: translateX(-50%); }
         }
 
         /* Progress bar container */
@@ -81,7 +79,7 @@
 
         .progress-bar {
             height: 100%;
-            background: #ff66cc; /* Bright pink for a cartoonish effect */
+            background: #ff0000; /* Red for a bold effect */
             width: 0%;
             border-radius: 10px;
             transition: width 1s ease-in-out;
@@ -91,14 +89,14 @@
         .goal-text {
             font-size: 1.8em;
             font-weight: bold;
-            color: #ff66cc;
+            color: #ff0000; /* Red for goal text */
             margin-bottom: 20px;
         }
 
         .amount-raised {
             font-size: 1.5em;
             margin-top: 20px;
-            color: #333;
+            color: #000000; /* Black for amount raised */
         }
 
         /* Snowflakes animation */
@@ -118,7 +116,7 @@
 
         /* Fun "flip" button */
         .flip-button {
-            background-color: #ff66cc;
+            background-color: #ff0000; /* Red button */
             color: #fff;
             font-size: 1.2em;
             padding: 10px 20px;
