@@ -13,19 +13,19 @@
         }
 
         body {
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            background-color: #a2dff7; /* Light blue background */
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #e1f5fe, #ffffff); /* Light blue to white gradient */
             color: #333;
         }
 
         /* Header - Snowblower & Goal Tracker */
         .header {
             position: relative;
-            background-color: #fff;
+            background-color: #ffffff;
             padding: 50px 0;
             text-align: center;
             overflow: hidden;
-            border-bottom: 5px solid #55aaff;
+            border-bottom: 3px solid #008CFF; /* Soft blue border */
         }
 
         /* Snowflakes animation */
@@ -33,7 +33,7 @@
             position: absolute;
             width: 16px; /* Larger snowflakes */
             height: 16px;
-            background-color: #fff;
+            background-color: #ffffff;
             border-radius: 50%;
             animation: driftSnow 6s linear infinite;
         }
@@ -50,7 +50,7 @@
             right: 0;
             bottom: 0;
             background-image: url('https://www.transparenttextures.com/patterns/snow.png');
-            opacity: 0.3;
+            opacity: 0.2;
             animation: snowFall 3s linear infinite;
         }
 
@@ -61,10 +61,10 @@
 
         /* Progress bar container */
         .progress-container {
-            background: #f0f0f0;
-            border-radius: 10px;
+            background: #f1f1f1;
+            border-radius: 20px;
             margin: 20px auto;
-            height: 40px;
+            height: 30px;
             position: relative;
             overflow: hidden;
             width: 80%;
@@ -72,9 +72,9 @@
 
         .progress-bar {
             height: 100%;
-            background: #ff0000;
+            background: #0066CC; /* Modern blue */
             width: 60%; /* Hardcoded progress bar width */
-            border-radius: 10px;
+            border-radius: 20px;
             transition: width 1s ease-in-out;
         }
 
@@ -82,57 +82,58 @@
         .goal-text {
             font-size: 2.2em;
             font-weight: bold;
-            color: #ff0000; 
+            color: #333;
             margin-bottom: 20px;
         }
 
         .amount-raised {
             font-size: 1.5em;
             margin-top: 20px;
-            color: #000000;
+            color: #555; /* Softer gray */
         }
 
         /* Snowblower animation */
         .snowblower {
             position: absolute;
-            top: 50%; /* Position in the middle of the screen */
-            left: 0%; /* Start from the far left */
+            top: 50%;
+            left: 50%;
             width: 150px;
             filter: drop-shadow(3px 3px 10px rgba(0, 0, 0, 0.4));
             transform-origin: center;
-            animation: moveSnowblower 6s linear infinite;
+            animation: flipAnimation 2s ease;
         }
 
-        @keyframes moveSnowblower {
-            0% { left: 0%; }
-            50% { left: 50%; transform: translateX(-50%); }
-            100% { left: 100%; transform: translateX(-50%); }
+        @keyframes flipAnimation {
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* Button styling */
         .flip-button {
-            background-color: #ff0000; /* Red button */
+            background-color: #008CFF; /* Modern blue */
             color: #fff;
             font-size: 1.2em;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             margin-top: 30px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
 
         .flip-button:hover {
             transform: scale(1.1);
+            background-color: #005BB5; /* Darker blue on hover */
         }
 
         /* Main content */
         .main-content {
             padding: 50px 0;
-            background-color: #fff;
+            background-color: #ffffff;
             text-align: center;
-            border-top: 5px solid #55aaff;
+            border-top: 3px solid #008CFF;
         }
 
         .channel-info {
@@ -140,13 +141,13 @@
         }
 
         .channel-info h2 {
-            font-size: 2em;
-            color: #ff0000;
+            font-size: 2.2em;
+            color: #333;
         }
 
         .channel-info p {
             font-size: 1.2em;
-            color: #333;
+            color: #555;
             max-width: 800px;
             margin: 0 auto;
         }
@@ -177,7 +178,7 @@
             <div class="progress-bar" id="progressBar"></div>
         </div>
 
-        <div class="amount-raised" id="amountRaised">$3000 Saved</div> <!-- Static starting value -->
+        <div class="amount-raised" id="amountRaised">$3000 Saved</div>
 
         <!-- Cartoon Snowblower image -->
         <img src="https://cdn.vectorstock.com/i/preview-1x/96/80/snow-blower-or-thrower-cartoon-retro-woodcut-vector-36039680.jpg" alt="Cartoon Snowblower" class="snowblower" id="snowblower">
@@ -209,6 +210,8 @@
         function flipSnowblower() {
             const snowblower = document.getElementById('snowblower');
             snowblower.style.animation = 'flipAnimation 2s ease';
+            
+            // Reset the animation for future flips
             setTimeout(() => {
                 snowblower.style.animation = '';
             }, 2000);
