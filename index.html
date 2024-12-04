@@ -1,4 +1,83 @@
 <!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAAFixin Official Website</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#videos">Videos</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+      </header>
+
+    <section id="home">
+        <div class="banner">
+
+<style>
+    .navbar {
+        position: sticky;
+        top: 0;
+        background-color: #333;
+        color: white;
+        padding: 15px;
+        text-align: center;
+    }
+    .navbar a {
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+    }
+</style>
+
+<div class="navbar">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Shop</a>
+    <a href="#">Contact</a>
+</div>
+
+            
+            <h1>AAAFixin Official Website</h1>
+            <p>Welcome to my official website!</p>
+            <a href="https://www.youtube.com/yourchannel" target="_blank">Visit My YouTube</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>This is where you can tell your story and about your channel.</p>
+    </section>
+
+    <section id="videos">
+        <h2>Latest Videos</h2>
+        <div class="video-gallery">
+            <!-- Example of embedding a YouTube video -->
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/yourvideoid" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <a href="https://gumroad.com/yourproduct" target="_blank">
+  <button>Buy My Merch</button>
+</a>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <p>If you would like to collaborate or have questions, feel free to reach out!</p>
+        <form action="mailto:youremail@example.com" method="post" enctype="text/plain">
+            <input type="email" name="email" placeholder="Your Email" required><br>
+            <textarea name="message" placeholder="Your Message" required></textarea><br>
+            <input type="submit" value="Send Message">
+        </form>
+    </section>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -245,127 +324,5 @@
     </style>
 </head>
 <body>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAAFixin Official Website</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header>
-        <nav>
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#videos">Videos</a>
-            <a href="#contact">Contact</a>
-        </nav>
-
-      </header>
-
-    <section id="home">
-        <div class="banner">
-
-<style>
-    .navbar {
-        position: sticky;
-        top: 0;
-        background-color: #333;
-        color: white;
-        padding: 15px;
-        text-align: center;
-    }
-    .navbar a {
-        color: white;
-        padding: 10px 20px;
-        text-decoration: none;
-    }
-</style>
-
-<div class="navbar">
-    <a href="#">Home</a>
-    <a href="#">About</a>
-    <a href="#">Shop</a>
-    <a href="#">Contact</a>
-</div>
-
-            
-            <h1>AAAFixin Official Website</h1>
-            <p>Welcome to my official website!</p>
-            <a href="https://www.youtube.com/yourchannel" target="_blank">Visit My YouTube</a>
-        </div>
-    </section>
-
-    <section id="about">
-        <h2>About Me</h2>
-        <p>This is where you can tell your story and about your channel.</p>
-    </section>
-
-    <section id="videos">
-        <h2>Latest Videos</h2>
-        <div class="video-gallery">
-            <!-- Example of embedding a YouTube video -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/yourvideoid" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-    </section>
-
-    <a href="https://gumroad.com/yourproduct" target="_blank">
-  <button>Buy My Merch</button>
-</a>
-
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p>If you would like to collaborate or have questions, feel free to reach out!</p>
-        <form action="mailto:youremail@example.com" method="post" enctype="text/plain">
-            <input type="email" name="email" placeholder="Your Email" required><br>
-            <textarea name="message" placeholder="Your Message" required></textarea><br>
-            <input type="submit" value="Send Message">
-        </form>
-    </section>
-
-
-    <h1>Welcome to My Website!</h1>
-    <p>Help me reach my $5000 goal!</p>
-
-    <!-- Donation counter with animation -->
-    <div id="donation-counter">
-        <div id="donation-bar"></div>
-        <div id="counter-text">$<span id="counter">0</span> / $5000</div>
-    </div>
-
-    <!-- Button to simulate a donation -->
-    <button id="donate-button">Donate $50</button>
-
-    <script>
-        // Set the goal and initial amount
-        const goalAmount = 10000;
-        let currentAmount = localStorage.getItem('donatedAmount') ? parseFloat(localStorage.getItem('donatedAmount')) : 0;
-
-        // Update the counter display and donation bar
-        function updateCounter() {
-            const counterElement = document.getElementById('counter');
-            const donationBar = document.getElementById('donation-bar');
-            const percentage = (currentAmount / goalAmount) * 100;
-
-            // Update the counter number
-            counterElement.textContent = currentAmount.toFixed(2);
-
-            // Animate the donation bar width (percentage of goal)
-            donationBar.style.width = percentage + "%";
-        }
-
-        // Simulate a donation of $50
-        document.getElementById('donate-button').addEventListener('click', function() {
-            const donationAmount = 50; // You can change this value based on your needs
-            currentAmount += donationAmount;
-            localStorage.setItem('donatedAmount', currentAmount);
-            updateCounter();
-        });
-
-        // Initialize the counter on page load
-        updateCounter();
-    </script>
-
-</body>
 </html>
 
