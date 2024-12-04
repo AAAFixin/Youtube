@@ -50,20 +50,19 @@
             border: 3px dashed #55aaff;
         }
 
-        /* Cartoon Snowblower */
+        /* Smaller Cartoon Snowblower */
         .snowblower {
             position: absolute;
             top: 50%;
-            left: -250px;
-            animation: moveSnowblower 10s linear infinite;
-            width: 220px;
+            left: -180px; /* Slightly adjusted to keep within view */
+            width: 150px; /* Reduced size of snowblower */
             filter: drop-shadow(3px 3px 10px rgba(0, 0, 0, 0.4));
             transform-origin: center;
         }
 
         /* Continuous movement of snowblower from left to right */
         @keyframes moveSnowblower {
-            0% { left: -250px; }
+            0% { left: -180px; }
             50% { left: 50%; transform: translateX(-50%); }
             100% { left: 100%; transform: translateX(-50%); }
         }
