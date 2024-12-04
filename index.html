@@ -76,7 +76,186 @@
             <input type="submit" value="Send Message">
         </form>
     </section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Goal Tracker - Snowblower Theme</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #b3e0ff;
+            overflow: hidden;
+        }
+
+        /* Snowy background */
+        .snowfall {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://www.transparenttextures.com/patterns/snow.png');
+            opacity: 0.3;
+            animation: snowFall 3s linear infinite;
+        }
+
+        @keyframes snowFall {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(100%); }
+        }
+
+        /* Goal tracker container */
+        .tracker-container {
+            position: relative;
+            max-width: 800px;
+            margin: 100px auto;
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        /* Snowblower image */
+        .snowblower {
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: blowSnow 5s linear infinite;
+            z-index: 10;
+            width: 200px;
+        }
+
+        @keyframes blowSnow {
+            0% { transform: translateX(-50%) translateY(-100px) rotate(0deg); }
+            50% { transform: translateX(50%) translateY(50px) rotate(10deg); }
+            100% { transform: translateX(-50%) translateY(-100px) rotate(-10deg); }
+        }
+
+        /* Progress bar container */
+        .progress-container {
+            background: #ddd;
+            border-radius: 10px;
+            margin: 20px 0;
+            height: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: #4caf50;
+            width: 0%;
+            border-radius: 10px;
+            transition: width 1s ease-in-out;
+        }
+
+        .goal-text {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .amount-raised {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        /* Snow particles animation */
+        .snow-particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: driftSnow 5s linear infinite;
+        }
+
+        @keyframes driftSnow {
+            0% { opacity: 0.5; transform: translateX(0) translateY(0); }
+            100% { opacity: 0; transform: translateX(100px) translateY(200px); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Snowfall background -->
+    <div class="snowfall"></div>
+
+    <!-- Goal Tracker Container -->
+    <div class="tracker-container">
+        <h1 class="goal-text">Help Us Reach Our $5000 Goal!</h1>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="amount-raised" id="amountRaised">$0 Raised</div>
+
+        <!-- Snowblower animation -->
+        <img src="https://www.example.com/snowblower.png" alt="Snowblower" class="snowblower">
+
+        <button onclick="updateProgress()">Donate $100</button>
+    </div>
+
+    <script>
+        // Initial values
+        let currentAmount = 0;
+        const goalAmount = 5000;
+
+        // Update progress bar and text
+        function updateProgress() {
+            if (currentAmount < goalAmount) {
+                currentAmount += 100; // Simulate a donation
+
+                // Update the progress bar width
+                const progressBar = document.getElementById('progressBar');
+                progressBar.style.width = `${(currentAmount / goalAmount) * 100}%`;
+
+                // Update the amount raised text
+                const amountRaised = document.getElementById('amountRaised');
+                amountRaised.innerHTML = `$${currentAmount} Raised`;
+
+                // Add snowflakes dynamically
+                createSnowflakes();
+            }
+        }
+
+        // Function to create snowflakes
+        function createSnowflakes() {
+            for (let i = 0; i < 5; i++) {
+                let snowflake = document.createElement('div');
+                snowflake.classList.add('snow-particle');
+
+                // Randomize the position of the snowflakes
+                snowflake.style.left = `${Math.random() * 100}%`;
+                snowflake.style.animationDuration = `${Math.random() * 5 + 2}s`; // Random drift speed
+                snowflake.style.animationDelay = `${Math.random() * 2}s`; // Random delay before appearing
+
+                document.body.appendChild(snowflake);
+
+                // Remove snowflakes after they drift
+                setTimeout(() => {
+                    snowflake.remove();
+                }, 7000); // Match this with the duration of the animation
+            }
+        }
+    </script>
+
+</body>
+</html>
     <footer>
 <!DOCTYPE html>
 <html lang="en">
