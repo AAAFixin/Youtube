@@ -3,85 +3,299 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAAFixin - Fixing and Flipping Snowblowers</title>
+    <title>AAAFixin - Snowblower Flipping</title>
     <style>
-        body {
+        /* Basic reset */
+        * {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            box-sizing: border-box;
         }
 
-        /* Snowblower Images */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #e1f5fe, #ffffff); /* Light blue to white gradient */
+            color: #333;
+            height: 200vh; /* Increased height to simulate scrolling */
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Header - Snowblower & Goal Tracker */
+        .header {
+            position: relative;
+            background-color: #ffffff;
+            padding: 50px 0;
+            text-align: center;
+            overflow: hidden;
+            border-bottom: 3px solid #008CFF; /* Soft blue border */
+        }
+
+        /* Progress bar container */
+        .progress-container {
+            background: #f1f1f1;
+            border-radius: 20px;
+            margin: 20px auto;
+            height: 30px;
+            position: relative;
+            overflow: hidden;
+            width: 80%;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: #0066CC; /* Modern blue */
+            width: 60%; /* Hardcoded progress bar width */
+            border-radius: 20px;
+            transition: width 1s ease-in-out;
+        }
+
+        /* Title and amount raised */
+        .goal-text {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .amount-raised {
+            font-size: 1.5em;
+            margin-top: 20px;
+            color: #555; /* Softer gray */
+        }
+
+        /* Snowblower image animation */
         .snowblower {
-            position: fixed;
-            left: 10%;
+            position: fixed; /* Position it relative to the screen */
             top: 50%;
+            left: 10%; /* Initially off to the left side */
             width: 150px;
-            z-index: 1000;
-            transition: top 0.2s;
+            filter: drop-shadow(3px 3px 10px rgba(0, 0, 0, 0.4));
+            transform-origin: center;
+            transition: top 0.1s ease; /* Smooth vertical movement */
         }
 
         .snowblower-right {
             position: fixed;
-            right: 10%;
             top: 50%;
+            right: 10%; /* Positioned on the right side */
             width: 150px;
-            z-index: 1000;
-            transition: top 0.2s;
+            filter: drop-shadow(3px 3px 10px rgba(0, 0, 0, 0.4));
+            transform-origin: center;
+            transition: top 0.1s ease; /* Smooth vertical movement */
         }
 
-        /* Snowflakes */
-        .snow-particle {
-            position: absolute;
-            top: 0;
-            background-color: white;
-            border-radius: 50%;
-            opacity: 0.8;
-            animation: snow 6s linear infinite;
+        /* Button styling */
+        .flip-button {
+            background-color: #008CFF; /* Modern blue */
+            color: #fff;
+            font-size: 1.2em;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
 
-        @keyframes snow {
-            0% {
-                transform: translateY(0) translateX(0);
-            }
-            100% {
-                transform: translateY(100vh) translateX(calc(100px * (2 * random() - 1)));
-            }
+        .flip-button:hover {
+            transform: scale(1.1);
+            background-color: #005BB5; /* Darker blue on hover */
         }
 
-        /* Content Section */
-        .content {
+        /* Main content */
+        .main-content {
+            padding: 50px 0;
+            background-color: #ffffff;
             text-align: center;
-            padding: 20px;
+            border-top: 3px solid #008CFF;
         }
 
+        .channel-info {
+            margin-bottom: 30px;
+        }
+
+        .channel-info h2 {
+            font-size: 2.2em;
+            color: #333;
+        }
+
+        .channel-info p {
+            font-size: 1.2em;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Embedded YouTube Video */
+        .video-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        iframe {
+            width: 100%;
+            max-width: 800px;
+            height: 450px;
+        }
+
+        /* New Section for Before & After Snowblower Images & Stories */
+        .repair-section {
+            padding: 50px;
+            background-color: #f9f9f9;
+            text-align: center;
+            border-top: 3px solid #008CFF;
+        }
+
+        .repair-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .repair-item {
+            max-width: 400px;
+            text-align: left;
+        }
+
+        .repair-item img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .repair-story {
+            margin-top: 15px;
+            color: #555;
+            font-size: 1.1em;
+        }
+
+        .repair-story a {
+            color: #0066CC;
+            text-decoration: none;
+        }
+
+        .repair-story a:hover {
+            text-decoration: underline;
+        }
+
+        /* New Section for Top 10 Amazon Snowblower Tools */
         .tools-section {
-            margin-top: 50px;
-            padding: 20px;
+            padding: 50px;
+            background-color: #f0f0f0;
+            text-align: center;
+            border-top: 3px solid #008CFF;
+        }
+
+        .tools-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #333;
         }
 
         .tools-container {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .tool-item {
-            width: 30%;
-            margin: 10px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
+
+        .tool-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .tool-item h3 {
+            font-size: 1.4em;
+            margin-top: 15px;
+            color: #333;
+        }
+
+        .tool-item p {
+            font-size: 1em;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .tool-item a {
+            display: block;
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #0066CC;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .tool-item a:hover {
+            background-color: #004D99;
+        }
+
     </style>
 </head>
 <body>
 
-    <!-- Snowblower Images -->
-    <img src="https://i.imgur.com/bCAnbdY.png" class="snowblower" id="snowblower-left" alt="Snowblower Left">
-    <img src="https://i.imgur.com/i2djyBA.png" class="snowblower-right" id="snowblower-right" alt="Snowblower Right">
+    <!-- Header with snowblower animation and goal tracker -->
+    <div class="header">
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
 
-    <!-- Main Content -->
-    <div class="content">
-        <h1>Welcome to AAAFixin</h1>
-        <p>We fix and flip snowblowers to save up to a goal of $5000!</p>
+        <div class="amount-raised" id="amountRaised">$3000 Saved</div>
+
+        <!-- Your custom snowblower image on the left -->
+        <img src="https://i.imgur.com/bCAnbdY.png" alt="Snowblower Left" class="snowblower" id="snowblower-left">
+
+        <!-- Your custom snowblower image on the right -->
+        <img src="https://i.imgur.com/i2djyBA.png" alt="Snowblower Right" class="snowblower-right" id="snowblower-right">
+
+        <!-- Button to simulate flipping snowblowers -->
+        <button class="flip-button" onclick="flipSnowblower()">Flip a Snowblower! +$100</button>
+    </div>
+
+    <!-- Main content section (YouTube Channel) -->
+    <div class="main-content">
+        <div class="channel-info">
+            <h2>Welcome to AAAFixin!</h2>
+            <p>I am dedicated to fixing and flipping snowblowers to save up to $5000! On this channel, you will find tutorials, tips, and my journey through flipping snowblowers. Watch my videos and follow along with the fun!</p>
+        </div>
+
+        <!-- Embedded YouTube Video -->
+        <div class="video-container">
+            <h3>Check out my latest video!</h3>
+            <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_HERE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- New Section for Before & After Snowblower Images & Stories -->
+    <div class="repair-section">
+        <h2>Before and After Snowblower Repairs</h2>
+        
+        <div class="repair-container">
+            <!-- Repair Item 1 -->
+            <div class="repair-item">
+                <h3>Snowblower #1: Found in a Garage Sale</h3>
+                <img src="before-image-url.jpg" alt="Before Repair">
+                <img src="after-image-url.jpg" alt="After Repair">
+                <div class="repair-story">
+                    <p>Found this snowblower covered in dust, but after a good cleaning and carburetor replacement, it worked like new! <a href="https://www.youtube.com/watch?v=video_id">Watch the repair video</a></p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- New Section for Top 10 Amazon Snowblower Tools -->
@@ -99,13 +313,25 @@
     </div>
 
     <script>
-        // Adjust snowblower position as user scrolls
-        window.onscroll = function() {
-            const snowblowerLeft = document.getElementById('snowblower-left');
-            const snowblowerRight = document.getElementById('snowblower-right');
-            const scrollY = window.scrollY;
-            snowblowerLeft.style.top = `${50 + scrollY * 0.1}%`;
-            snowblowerRight.style.top = `${50 + scrollY * 0.1}%`;
+        // Flip snowblower function and progress tracking
+        let currentAmount = 3000; // Starting amount
+        const goalAmount = 5000;
+
+        function flipSnowblower() {
+            const blowerLeft = document.getElementById('snowblower-left');
+            const blowerRight = document.getElementById('snowblower-right');
+            blowerLeft.style.animation = 'flip 2s'; // Animation style (ensure you have defined flip keyframes)
+            blowerRight.style.animation = 'flip 2s';
+
+            // Update progress and goal tracker
+            currentAmount += 100;
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = `${(currentAmount / goalAmount) * 100}%`;
+
+            const amountRaised = document.getElementById('amountRaised');
+            amountRaised.innerHTML = `$${currentAmount} Saved`;
+
+            createSnowflakes();
         }
 
         // Snowflake generator function
@@ -123,9 +349,14 @@
             }
         }
 
-        // Trigger snowflakes creation
-        setInterval(createSnowflakes, 500);
+        // Adjust snowblower positions as user scrolls
+        window.onscroll = function() {
+            const scrollY = window.scrollY;
+            const snowblowerLeft = document.getElementById('snowblower-left');
+            const snowblowerRight = document.getElementById('snowblower-right');
+            snowblowerLeft.style.top = `${50 + scrollY * 0.1}%`;
+            snowblowerRight.style.top = `${50 + scrollY * 0.1}%`;
+        }
     </script>
-
 </body>
 </html>
