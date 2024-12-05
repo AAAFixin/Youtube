@@ -171,6 +171,70 @@
             text-decoration: underline;
         }
 
+        /* New Section for Top 10 Amazon Snowblower Tools */
+        .tools-section {
+            padding: 50px;
+            background-color: #f0f0f0;
+            text-align: center;
+            border-top: 3px solid #008CFF;
+        }
+
+        .tools-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .tools-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tool-item {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tool-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .tool-item h3 {
+            font-size: 1.4em;
+            margin-top: 15px;
+            color: #333;
+        }
+
+        .tool-item p {
+            font-size: 1em;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .tool-item a {
+            display: block;
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #0066CC;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .tool-item a:hover {
+            background-color: #004D99;
+        }
+        
     </style>
 </head>
 <body>
@@ -212,51 +276,55 @@
             <!-- Repair Item 1 -->
             <div class="repair-item">
                 <h3>Snowblower #1: Found in a Garage Sale</h3>
-                <img src="before-image-url.jpg" alt="Before Repair 1">
-                <p class="repair-story">I found this snowblower at a garage sale for just $50! It had a broken pull cord and needed a good cleaning. After replacing the cord and giving it a full service, it's running like new! <a href="https://www.youtube.com/watch?v=video_id" target="_blank">Watch the repair process here</a>.</p>
-                <img src="after-image-url.jpg" alt="After Repair 1">
+                <img src="before-image-url.jpg" alt="Before Repair">
+                <img src="after-image-url.jpg" alt="After Repair">
+                <div class="repair-story">
+                    <p>Found this snowblower covered in dust, but after a good cleaning and carburetor replacement, it worked like new! <a href="https://www.youtube.com/watch?v=video_id">Watch the repair video</a></p>
+                </div>
             </div>
-            
-            <!-- Repair Item 2 -->
-            <div class="repair-item">
-                <h3>Snowblower #2: Bought from a Neighbor</h3>
-                <img src="before-image-url-2.jpg" alt="Before Repair 2">
-                <p class="repair-story">This snowblower was left unused for years. After diagnosing a fuel system issue, I replaced the carburetor and cleaned the fuel lines. It’s as good as new! <a href="https://www.youtube.com/watch?v=video_id_2" target="_blank">Watch the full repair video</a>.</p>
-                <img src="after-image-url-2.jpg" alt="After Repair 2">
+            <!-- Repeat similar blocks for more items -->
+        </div>
+    </div>
+
+    <!-- New Section for Top 10 Amazon Snowblower Tools -->
+    <div class="tools-section">
+        <h2>Top 10 Snowblower Tools You Need</h2>
+        <div class="tools-container">
+            <!-- Tool 1 -->
+            <div class="tool-item">
+                <img src="tool-image-url.jpg" alt="Snowblower Tool">
+                <h3>Tool Name 1</h3>
+                <p>Brief description of the tool and why it's helpful for snowblower repairs.</p>
+                <a href="https://www.amazon.com/dp/YOUR_AFFILIATE_LINK" target="_blank">Buy on Amazon</a>
             </div>
+            <!-- Repeat similar blocks for more tools -->
         </div>
     </div>
 
     <script>
-        // Initial values for goal tracker
-        let currentAmount = 3000;
+        // Flip snowblower function and progress tracking
+        let currentAmount = 3000; // Starting amount
         const goalAmount = 5000;
 
-        // Function to simulate flipping snowblower
         function flipSnowblower() {
-            const snowblower = document.getElementById('snowblower');
-            snowblower.style.animation = 'flipAnimation 2s ease';
-            
-            // Reset the animation for future flips
-            setTimeout(() => {
-                snowblower.style.animation = '';
-            }, 2000);
+            // Trigger snowblower flip animation (you can modify this as per the previous animation logic)
+            const blower = document.getElementById('snowblower');
+            blower.style.animation = 'flip 2s'; // Animation style (ensure you have defined flip keyframes)
+
+            // Update progress and goal tracker
+            currentAmount += 100;
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = `${(currentAmount / goalAmount) * 100}%`;
+
+            const amountRaised = document.getElementById('amountRaised');
+            amountRaised.innerHTML = `$${currentAmount} Saved`;
 
             createSnowflakes();
-
-            if (currentAmount < goalAmount) {
-                currentAmount += 100;
-                const progressBar = document.getElementById('progressBar');
-                progressBar.style.width = `${(currentAmount / goalAmount) * 100}%`;
-
-                const amountRaised = document.getElementById('amountRaised');
-                amountRaised.innerHTML = `$${currentAmount} Saved`;
-            }
         }
 
-        // Function to generate snowflakes
+        // Snowflake generator function
         function createSnowflakes() {
-            for (let i = 0; i < 30; i++) {  // Increase snowflakes for more coverage
+            for (let i = 0; i < 30; i++) {
                 let snowflake = document.createElement('div');
                 snowflake.classList.add('snow-particle');
                 snowflake.style.left = `${Math.random() * 100}%`;
@@ -268,14 +336,6 @@
                 }, 6000);
             }
         }
-
-        // Make snowblower follow the page scroll position
-        const snowblower = document.getElementById('snowblower');
-
-        window.addEventListener('scroll', () => {
-            const scrollPosition = window.scrollY;
-            snowblower.style.top = `${50 + scrollPosition / 5}%`; // Adjust this to control the speed of movement
-        });
     </script>
 
 </body>
