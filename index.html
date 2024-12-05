@@ -130,6 +130,47 @@
             height: 450px;
         }
 
+        /* New Section for Before & After Snowblower Images & Stories */
+        .repair-section {
+            padding: 50px;
+            background-color: #f9f9f9;
+            text-align: center;
+            border-top: 3px solid #008CFF;
+        }
+
+        .repair-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .repair-item {
+            max-width: 400px;
+            text-align: left;
+        }
+
+        .repair-item img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .repair-story {
+            margin-top: 15px;
+            color: #555;
+            font-size: 1.1em;
+        }
+
+        .repair-story a {
+            color: #0066CC;
+            text-decoration: none;
+        }
+
+        .repair-story a:hover {
+            text-decoration: underline;
+        }
+
     </style>
 </head>
 <body>
@@ -160,6 +201,29 @@
         <div class="video-container">
             <h3>Check out my latest video!</h3>
             <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_HERE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- New Section for Before & After Snowblower Images & Stories -->
+    <div class="repair-section">
+        <h2>Before and After Snowblower Repairs</h2>
+        
+        <div class="repair-container">
+            <!-- Repair Item 1 -->
+            <div class="repair-item">
+                <h3>Snowblower #1: Found in a Garage Sale</h3>
+                <img src="before-image-url.jpg" alt="Before Repair 1">
+                <p class="repair-story">I found this snowblower at a garage sale for just $50! It had a broken pull cord and needed a good cleaning. After replacing the cord and giving it a full service, it's running like new! <a href="https://www.youtube.com/watch?v=video_id" target="_blank">Watch the repair process here</a>.</p>
+                <img src="after-image-url.jpg" alt="After Repair 1">
+            </div>
+            
+            <!-- Repair Item 2 -->
+            <div class="repair-item">
+                <h3>Snowblower #2: Bought from a Neighbor</h3>
+                <img src="before-image-url-2.jpg" alt="Before Repair 2">
+                <p class="repair-story">This snowblower was left unused for years. After diagnosing a fuel system issue, I replaced the carburetor and cleaned the fuel lines. It’s as good as new! <a href="https://www.youtube.com/watch?v=video_id_2" target="_blank">Watch the full repair video</a>.</p>
+                <img src="after-image-url-2.jpg" alt="After Repair 2">
+            </div>
         </div>
     </div>
 
