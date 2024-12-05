@@ -16,6 +16,9 @@
             font-family: 'Arial', sans-serif;
             background: linear-gradient(to bottom, #e1f5fe, #ffffff); /* Light blue to white gradient */
             color: #333;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
         }
 
         /* Header - Snowblower & Goal Tracker */
@@ -26,37 +29,6 @@
             text-align: center;
             overflow: hidden;
             border-bottom: 3px solid #008CFF; /* Soft blue border */
-        }
-
-        /* Snowflakes animation */
-        .snow-particle {
-            position: absolute;
-            width: 16px; /* Larger snowflakes */
-            height: 16px;
-            background-color: #ffffff;
-            border-radius: 50%;
-            animation: driftSnow 6s linear infinite;
-        }
-
-        @keyframes driftSnow {
-            0% { opacity: 0.8; transform: translateX(0) translateY(0); }
-            100% { opacity: 0; transform: translateX(150px) translateY(300px); }
-        }
-
-        .snowfall {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('https://www.transparenttextures.com/patterns/snow.png');
-            opacity: 0.2;
-            animation: snowFall 3s linear infinite;
-        }
-
-        @keyframes snowFall {
-            from { transform: translateY(-100%); }
-            to { transform: translateY(100%); }
         }
 
         /* Progress bar container */
@@ -96,17 +68,11 @@
         .snowblower {
             position: absolute;
             top: 50%;
-            left: 50%;
+            left: 10%; /* Initially off to the left side */
             width: 150px;
             filter: drop-shadow(3px 3px 10px rgba(0, 0, 0, 0.4));
             transform-origin: center;
-            animation: flipAnimation 2s ease;
-        }
-
-        @keyframes flipAnimation {
-            0% { transform: rotate(0deg); }
-            50% { transform: rotate(180deg); }
-            100% { transform: rotate(360deg); }
+            transition: top 0.1s ease, left 0.1s ease; /* Smooth movement */
         }
 
         /* Button styling */
@@ -170,10 +136,6 @@
 
     <!-- Header with snowblower animation and goal tracker -->
     <div class="header">
-        <div class="snowfall"></div>
-
-        <h1 class="goal-text">Flipping Snowblowers to Save $5000!</h1>
-
         <div class="progress-container">
             <div class="progress-bar" id="progressBar"></div>
         </div>
@@ -242,7 +204,20 @@
                 }, 6000);
             }
         }
+
+        // Make snowblower follow the user's mouse position
+        const snowblower = document.getElementById('snowblower');
+
+        document.addEventListener('mousemove', (event) => {
+            // Set the position of the snowblower to follow the mouse
+            const x = event.clientX;
+            const y = event.clientY;
+
+            snowblower.style.left = `${x - 100}px`;  // Offset to the left side of the mouse
+            snowblower.style.top = `${y - 50}px`;    // Offset vertically to center the snowblower
+        });
     </script>
 
 </body>
 </html>
+
