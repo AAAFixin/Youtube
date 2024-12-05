@@ -16,8 +16,8 @@
             font-family: 'Arial', sans-serif;
             background: linear-gradient(to bottom, #e1f5fe, #ffffff); /* Light blue to white gradient */
             color: #333;
-            height: 100vh;
-            overflow: hidden;
+            height: 200vh; /* Increased height to simulate scrolling */
+            overflow-x: hidden;
             position: relative;
         }
 
@@ -66,13 +66,13 @@
 
         /* Snowblower animation */
         .snowblower {
-            position: absolute;
+            position: fixed; /* Position it relative to the screen */
             top: 50%;
             left: 10%; /* Initially off to the left side */
             width: 150px;
             filter: drop-shadow(3px 3px 10px rgba(0, 0, 0, 0.4));
             transform-origin: center;
-            transition: top 0.1s ease, left 0.1s ease; /* Smooth movement */
+            transition: top 0.1s ease; /* Smooth vertical movement */
         }
 
         /* Button styling */
@@ -205,19 +205,14 @@
             }
         }
 
-        // Make snowblower follow the user's mouse position
+        // Make snowblower follow the page scroll position
         const snowblower = document.getElementById('snowblower');
 
-        document.addEventListener('mousemove', (event) => {
-            // Set the position of the snowblower to follow the mouse
-            const x = event.clientX;
-            const y = event.clientY;
-
-            snowblower.style.left = `${x - 100}px`;  // Offset to the left side of the mouse
-            snowblower.style.top = `${y - 50}px`;    // Offset vertically to center the snowblower
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+            snowblower.style.top = `${50 + scrollPosition / 5}%`; // Adjust this to control the speed of movement
         });
     </script>
 
 </body>
 </html>
-
