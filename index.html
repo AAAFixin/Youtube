@@ -40,26 +40,14 @@
             position: relative;
             overflow: hidden;
             width: 80%;
-            border: 2px solid #00aaff; /* Light blue border around the container */
         }
 
         .progress-bar {
             height: 100%;
-            width: 0%; /* Start from 0% */
+            background: #0099FF; /* Initial cold theme */
+            width: 0%; /* Hardcoded progress bar width */
             border-radius: 20px;
-            transition: width 2s ease-in-out;
-        }
-
-        .goal-label {
-            position: absolute;
-            top: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 1.2em;
-            color: #00aaff; /* Light blue to match the theme */
-            font-weight: bold;
-            letter-spacing: 1px;
-            z-index: 2;
+            transition: width 1s ease-in-out;
         }
 
         /* Title and amount raised */
@@ -76,26 +64,6 @@
             color: #555; /* Softer gray */
         }
 
-        .progress-description {
-            margin-top: 20px;
-            font-size: 1.4em;
-            color: #333;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        .exciting-text {
-            font-size: 1.8em;
-            color: #ff6600; /* Bright orange for excitement */
-            font-weight: bold;
-        }
-
-        .call-to-action {
-            font-size: 1.3em;
-            color: #0099ff; /* Bright blue for call to action */
-            margin-top: 10px;
-        }
-
         /* Snowblower image animation */
         .snowblower {
             position: fixed; /* Position it relative to the screen */
@@ -107,14 +75,34 @@
             transition: top 0.1s ease; /* Smooth vertical movement */
         }
 
+        /* Snowblower on the right side */
         .snowblower-right {
             position: fixed;
             top: 50%;
-            right: 10%; /* Positioned on the right side */
+            right: 10%;
             width: 150px;
             filter: drop-shadow(3px 3px 10px rgba(0, 0, 0, 0.4));
             transform-origin: center;
-            transition: top 0.1s ease; /* Smooth vertical movement */
+            transition: top 0.1s ease;
+        }
+
+        /* Button styling */
+        .flip-button {
+            background-color: #008CFF; /* Modern blue */
+            color: #fff;
+            font-size: 1.2em;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .flip-button:hover {
+            transform: scale(1.1);
+            background-color: #005BB5; /* Darker blue on hover */
         }
 
         /* Main content */
@@ -258,74 +246,90 @@
             background-color: #004D99;
         }
 
+        /* Dynamic Progress Text */
+        .progress-description {
+            font-size: 1.5em;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        .exciting-text {
+            font-size: 1.4em;
+            color: #ff6600;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
     </style>
 </head>
 <body>
 
     <!-- Header with snowblower animation and goal tracker -->
     <div class="header">
-        <!-- Goal tracker with a more dynamic look -->
         <div class="progress-container">
-            <div class="goal-label">Goal: $5000</div>
             <div class="progress-bar" id="progressBar"></div>
         </div>
 
         <div class="amount-raised" id="amountRaised">$250 Saved</div>
 
-        <!-- Text below the progress bar -->
-        <div class="progress-description">
-            <p>Join the journey to flip snowblowers for profit and help us reach the goal! 🔥</p>
-            <p class="exciting-text">We’ve flipped $250 so far—watch us go from $250 to $5000! 🌟</p>
-            <p class="call-to-action">Check out the AAAFixin channel for full snowblower flips, tips, and more! 📺</p>
-        </div>
+        <!-- Dynamic progress text -->
+        <div class="progress-description">We're just getting started! Keep watching and support our flips! 🔥</div>
+        <div class="exciting-text">Only $4750 more to go! Let's reach our goal! 🎯</div>
 
-        <!-- Your custom snowblower image on the left -->
-        <img src="https://i.imgur.com/bCAnbdY.png" alt="Snowblower Left" class="snowblower" id="snowblower-left">
-
-        <!-- Your custom snowblower image on the right -->
-        <img src="https://i.imgur.com/i2djyBA.png" alt="Snowblower Right" class="snowblower-right" id="snowblower-right">
+        <!-- Your custom snowblower image -->
+        <img src="https://i.imgur.com/bCAnbdY.png" alt="Snowblower" class="snowblower" id="snowblower-left">
+        <img src="https://i.imgur.com/i2djyBA.png" alt="Snowblower" class="snowblower" id="snowblower-right">
     </div>
 
-    <!-- Main Content with Channel Info -->
+    <!-- Main content section (YouTube Channel) -->
     <div class="main-content">
         <div class="channel-info">
             <h2>Welcome to AAAFixin!</h2>
-            <p>On our channel, we take old, worn-out snowblowers and bring them back to life for profit. We're on a mission to reach $5000 through flipping these machines—watch the journey unfold and learn along the way! 🛠️💰</p>
+            <p>I am dedicated to fixing and flipping snowblowers to save up to $5000! On this channel, you will find tutorials, tips, and my journey through flipping snowblowers. Watch my videos and follow along with the fun!</p>
         </div>
 
-        <!-- Embedded YouTube Video Placeholder -->
+        <!-- Embedded YouTube Video -->
         <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/video_id" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <h3>Check out my latest video!</h3>
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="AAAFixin Channel Video" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
 
-    <!-- Before & After Snowblower Repair Section -->
+    <!-- Repair Section (Before and After) -->
     <div class="repair-section">
-        <h2>Before & After Snowblower Repairs</h2>
+        <h2>Before & After: Snowblower Repairs</h2>
         <div class="repair-container">
             <div class="repair-item">
-                <img src="before_snowblower.jpg" alt="Before Repair">
-                <p class="repair-story">Before repair: Worn-out engine and rusty parts. <a href="#">Learn how we fixed it!</a></p>
+                <img src="https://via.placeholder.com/400x300" alt="Before Snowblower Repair">
+                <div class="repair-story">
+                    <p><strong>Before:</strong> Broken pull start and clogged engine. <br><a href="#">Read the full story</a></p>
+                </div>
             </div>
             <div class="repair-item">
-                <img src="after_snowblower.jpg" alt="After Repair">
-                <p class="repair-story">After repair: Ready for resale and profit! <a href="#">See the full flip process!</a></p>
+                <img src="https://via.placeholder.com/400x300" alt="After Snowblower Repair">
+                <div class="repair-story">
+                    <p><strong>After:</strong> Runs like new! Ready to flip for a profit. <br><a href="#">Read the full story</a></p>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Amazon Affiliate Tools Section -->
+    <!-- Amazon Tools Section -->
     <div class="tools-section">
-        <h2>Top 10 Amazon Snowblower Tools</h2>
+        <h2>Top 10 Tools for Snowblower Repairs</h2>
         <div class="tools-container">
-            <!-- Repeat this block for each tool -->
             <div class="tool-item">
-                <img src="tool_image.jpg" alt="Tool Image">
-                <h3>Snowblower Engine Oil</h3>
-                <p>Perfect for maintaining your snowblower engine for optimal performance!</p>
-                <a href="https://www.amazon.com/dp/example" target="_blank">Buy Now on Amazon</a>
+                <img src="https://via.placeholder.com/400x200" alt="Snowblower Repair Tool">
+                <h3>Snowblower Carburetor Cleaner</h3>
+                <p>Perfect for cleaning out carburetors to ensure smooth running engines.</p>
+                <a href="#">Buy Now</a>
             </div>
-            <!-- Add more tools similarly -->
+            <div class="tool-item">
+                <img src="https://via.placeholder.com/400x200" alt="Snowblower Tool">
+                <h3>Snowblower Spark Plug Kit</h3>
+                <p>Replace old spark plugs for efficient engine performance.</p>
+                <a href="#">Buy Now</a>
+            </div>
         </div>
     </div>
 
@@ -336,9 +340,13 @@
         function updateProgressBar() {
             const progressBar = document.getElementById('progressBar');
             const amountRaised = document.getElementById('amountRaised');
+            const progressDescription = document.querySelector('.progress-description');
+            const excitingText = document.querySelector('.exciting-text');
+
+            // Calculate the percentage of progress
+            const percentage = (currentAmount / goalAmount) * 100;
 
             // Update progress bar width and color
-            const percentage = (currentAmount / goalAmount) * 100;
             progressBar.style.width = `${percentage}%`;
 
             // Cold to Hot gradient (Blue -> Red)
@@ -348,7 +356,23 @@
                 progressBar.style.background = `linear-gradient(to right, #0099FF 50%, #FF6600 ${percentage - 50}%, #FF3300)`;
             }
 
+            // Update the amount raised display
             amountRaised.innerHTML = `$${currentAmount} Saved`;
+
+            // Dynamic message under the progress bar
+            if (percentage <= 20) {
+                progressDescription.innerHTML = "We're just getting started! Keep watching and support our flips! 🔥";
+                excitingText.innerHTML = `Only $${goalAmount - currentAmount} more to go! Let's reach our goal! 🎯`;
+            } else if (percentage <= 50) {
+                progressDescription.innerHTML = "You’re doing great! We're halfway to flipping our way to success! 🚀";
+                excitingText.innerHTML = `We're at $${currentAmount}, and it's getting closer! Let's keep this momentum!`;
+            } else if (percentage <= 80) {
+                progressDescription.innerHTML = "You're making an impact! The goal is in sight. Almost there! ⚡";
+                excitingText.innerHTML = `We're at $${currentAmount}! We're nearly at $5000, thanks to you!`;
+            } else {
+                progressDescription.innerHTML = "We can see the finish line! The end is almost here, and the flips are paying off! 🎉";
+                excitingText.innerHTML = `We're so close! Only $${goalAmount - currentAmount} left to go!`;
+            }
         }
 
         window.onload = updateProgressBar; // Fill progress bar when the page loads
