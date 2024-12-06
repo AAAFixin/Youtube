@@ -40,14 +40,27 @@
             position: relative;
             overflow: hidden;
             width: 80%;
+            border: 2px solid #00aaff; /* Light blue border around the container */
         }
 
         .progress-bar {
             height: 100%;
-            background: #0066CC; /* Modern blue */
-            width: 60%; /* Hardcoded progress bar width */
+            background: linear-gradient(to right, #FF8C00, #FF5733); /* Orange to red gradient */
+            width: 0%; /* Start from 0% */
             border-radius: 20px;
             transition: width 1s ease-in-out;
+        }
+
+        .goal-label {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2em;
+            color: #00aaff; /* Light blue to match the theme */
+            font-weight: bold;
+            letter-spacing: 1px;
+            z-index: 2;
         }
 
         /* Title and amount raised */
@@ -251,7 +264,9 @@
 
     <!-- Header with snowblower animation and goal tracker -->
     <div class="header">
+        <!-- Goal tracker with a more dynamic look -->
         <div class="progress-container">
+            <div class="goal-label">Goal: $5000</div>
             <div class="progress-bar" id="progressBar"></div>
         </div>
 
@@ -264,27 +279,22 @@
         <img src="https://i.imgur.com/i2djyBA.png" alt="Snowblower Right" class="snowblower-right" id="snowblower-right">
 
         <!-- Button to simulate flipping snowblowers -->
-        <button class="flip-button" onclick="flipSnowblower()">Flip a Snowblower! +$100</button>
+        <button class="flip-button" onclick="flipSnowblower()">Flip a Snowblower!</button>
     </div>
 
-    <!-- Main content section (YouTube Channel) -->
     <div class="main-content">
         <div class="channel-info">
             <h2>Welcome to AAAFixin!</h2>
-            <p>I am dedicated to fixing and flipping snowblowers to save up to $5000! On this channel, you will find tutorials, tips, and my journey through flipping snowblowers. Watch my videos and follow along with the fun!</p>
+            <p>Explore our DIY snowblower repairs, helpful tools, and repair tips. Join us in reaching our goal of $5000 to improve our snowblower flipping skills!</p>
         </div>
-
-        <!-- Embedded YouTube Video -->
+        
         <div class="video-container">
-            <h3>Check out my latest video!</h3>
-            <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_HERE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/examplevideo" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
 
-    <!-- New Section for Before & After Snowblower Images & Stories -->
     <div class="repair-section">
-        <h2>Before and After Snowblower Repairs</h2>
-        
+        <h2>Before & After Snowblower Repairs</h2>
         <div class="repair-container">
             <!-- Repair Item 1 -->
             <div class="repair-item">
@@ -298,7 +308,6 @@
         </div>
     </div>
 
-    <!-- New Section for Top 10 Amazon Snowblower Tools -->
     <div class="tools-section">
         <h2>Top 10 Snowblower Tools You Need</h2>
         <div class="tools-container">
@@ -313,17 +322,15 @@
     </div>
 
     <script>
-        // Flip snowblower function and progress tracking
         let currentAmount = 3000; // Starting amount
         const goalAmount = 5000;
 
         function flipSnowblower() {
             const blowerLeft = document.getElementById('snowblower-left');
             const blowerRight = document.getElementById('snowblower-right');
-            blowerLeft.style.animation = 'flip 2s'; // Animation style (ensure you have defined flip keyframes)
+            blowerLeft.style.animation = 'flip 2s'; 
             blowerRight.style.animation = 'flip 2s';
 
-            // Update progress and goal tracker
             currentAmount += 100;
             const progressBar = document.getElementById('progressBar');
             progressBar.style.width = `${(currentAmount / goalAmount) * 100}%`;
@@ -334,7 +341,6 @@
             createSnowflakes();
         }
 
-        // Snowflake generator function
         function createSnowflakes() {
             for (let i = 0; i < 30; i++) {
                 let snowflake = document.createElement('div');
@@ -349,7 +355,6 @@
             }
         }
 
-        // Adjust snowblower positions as user scrolls
         window.onscroll = function() {
             const scrollY = window.scrollY;
             const snowblowerLeft = document.getElementById('snowblower-left');
