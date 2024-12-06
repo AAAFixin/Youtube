@@ -279,7 +279,7 @@
                 <img src="before-image-url.jpg" alt="Before Repair">
                 <img src="after-image-url.jpg" alt="After Repair">
                 <div class="repair-story">
-                    <p>Found this snowblower covered in dust, but after a good cleaning and carburetor replacement, it worked like new! <a href="https://www.youtube.com/watch?v=video_id">Watch the repair video</a></p>
+                    <p>Found this snowblower for just $50! After some repairs, it was as good as new! <a href="https://www.youtube.com/watch?v=video_id">Watch the repair video</a></p>
                 </div>
             </div>
         </div>
@@ -311,7 +311,11 @@
             progressBar.style.width = `${percentage}%`;
 
             // Cold to Hot gradient (Blue -> Red)
-            progressBar.style.background = `linear-gradient(to right, #0099FF, #FF6600 ${percentage}%, #FF3300)`;
+            if (percentage <= 50) {
+                progressBar.style.background = `linear-gradient(to right, #0099FF ${percentage}%, #00aaff)`;
+            } else {
+                progressBar.style.background = `linear-gradient(to right, #0099FF 50%, #FF6600 ${percentage - 50}%, #FF3300)`;
+            }
 
             amountRaised.innerHTML = `$${currentAmount} Saved`;
         }
