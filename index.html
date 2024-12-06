@@ -45,10 +45,9 @@
 
         .progress-bar {
             height: 100%;
-            background: linear-gradient(to right, #FF8C00, #FF5733); /* Orange to red gradient */
             width: 0%; /* Start from 0% */
             border-radius: 20px;
-            transition: width 1s ease-in-out;
+            transition: width 2s ease-in-out;
         }
 
         .goal-label {
@@ -279,7 +278,7 @@
         <img src="https://i.imgur.com/i2djyBA.png" alt="Snowblower Right" class="snowblower-right" id="snowblower-right">
 
         <!-- Button to simulate flipping snowblowers -->
-        <button class="flip-button" onclick="flipSnowblower()">Flip a Snowblower!</button>
+        <button class="flip-button" id="flipButton" onclick="flipSnowblower()">Flip a Snowblower!</button>
     </div>
 
     <div class="main-content">
@@ -325,35 +324,21 @@
         let currentAmount = 3000; // Starting amount
         const goalAmount = 5000;
 
-        function flipSnowblower() {
-            const blowerLeft = document.getElementById('snowblower-left');
-            const blowerRight = document.getElementById('snowblower-right');
-            blowerLeft.style.animation = 'flip 2s'; 
-            blowerRight.style.animation = 'flip 2s';
-
-            currentAmount += 100;
+        function updateProgressBar() {
             const progressBar = document.getElementById('progressBar');
-            progressBar.style.width = `${(currentAmount / goalAmount) * 100}%`;
-
             const amountRaised = document.getElementById('amountRaised');
+
+            // Update progress bar width and color
+            const percentage = (currentAmount / goalAmount) * 100;
+            progressBar.style.width = `${percentage}%`;
+
+            // Cold to Hot gradient (Blue -> Red)
+            progressBar.style.background = `linear-gradient(to right, #0099FF, #FF6600 ${percentage}%, #FF3300)`;
+
             amountRaised.innerHTML = `$${currentAmount} Saved`;
-
-            createSnowflakes();
         }
 
-        function createSnowflakes() {
-            for (let i = 0; i < 30; i++) {
-                let snowflake = document.createElement('div');
-                snowflake.classList.add('snow-particle');
-                snowflake.style.left = `${Math.random() * 100}%`;
-                snowflake.style.animationDuration = `${Math.random() * 4 + 4}s`;
-                snowflake.style.animationDelay = `${Math.random() * 2}s`;
-                document.body.appendChild(snowflake);
-                setTimeout(() => {
-                    snowflake.remove();
-                }, 6000);
-            }
-        }
+        window.onload = updateProgressBar; // Fill progress bar when the page loads
 
         window.onscroll = function() {
             const scrollY = window.scrollY;
