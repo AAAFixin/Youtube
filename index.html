@@ -68,22 +68,20 @@
         .snowblower {
             position: fixed; /* Position it relative to the screen */
             top: 50%;
-            left: 10%; /* Initially off to the left side */
             width: 150px;
             filter: drop-shadow(3px 3px 10px rgba(0, 0, 0, 0.4));
             transform-origin: center;
             transition: top 0.1s ease; /* Smooth vertical movement */
         }
 
+        /* Snowblower on the left side */
+        .snowblower-left {
+            left: 10%;
+        }
+
         /* Snowblower on the right side */
         .snowblower-right {
-            position: fixed;
-            top: 50%;
             right: 10%;
-            width: 150px;
-            filter: drop-shadow(3px 3px 10px rgba(0, 0, 0, 0.4));
-            transform-origin: center;
-            transition: top 0.1s ease;
         }
 
         /* Button styling */
@@ -127,18 +125,6 @@
             color: #555;
             max-width: 800px;
             margin: 0 auto;
-        }
-
-        /* Embedded YouTube Video */
-        .video-container {
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        iframe {
-            width: 100%;
-            max-width: 800px;
-            height: 450px;
         }
 
         /* New Section for Before & After Snowblower Images & Stories */
@@ -276,9 +262,9 @@
         <div class="progress-description">We're just getting started! Keep watching and support our flips! 🔥</div>
         <div class="exciting-text">Only $4750 more to go! Let's reach our goal! 🎯</div>
 
-        <!-- Your custom snowblower image -->
-        <img src="https://i.imgur.com/bCAnbdY.png" alt="Snowblower" class="snowblower" id="snowblower-left">
-        <img src="https://i.imgur.com/i2djyBA.png" alt="Snowblower" class="snowblower" id="snowblower-right">
+        <!-- Snowblower images -->
+        <img src="https://i.imgur.com/bCAnbdY.png" alt="Snowblower" class="snowblower snowblower-left" id="snowblower-left">
+        <img src="https://i.imgur.com/i2djyBA.png" alt="Snowblower" class="snowblower snowblower-right" id="snowblower-right">
     </div>
 
     <!-- Main content section (YouTube Channel) -->
@@ -286,12 +272,7 @@
         <div class="channel-info">
             <h2>Welcome to AAAFixin!</h2>
             <p>I am dedicated to fixing and flipping snowblowers to save up to $5000! On this channel, you will find tutorials, tips, and my journey through flipping snowblowers. Watch my videos and follow along with the fun!</p>
-        </div>
-
-        <!-- Embedded YouTube Video -->
-        <div class="video-container">
-            <h3>Check out my latest video!</h3>
-            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="AAAFixin Channel Video" frameborder="0" allowfullscreen></iframe>
+            <a href="https://www.youtube.com/channel/UCnVjf2arZXYyM88V0ftht4w" target="_blank" class="flip-button">Visit Our YouTube Channel</a>
         </div>
     </div>
 
@@ -385,5 +366,6 @@
             snowblowerRight.style.top = `${50 + scrollY * 0.1}%`;
         }
     </script>
+
 </body>
 </html>
