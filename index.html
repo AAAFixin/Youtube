@@ -97,25 +97,6 @@
             transition: top 0.1s ease; /* Smooth vertical movement */
         }
 
-        /* Button styling */
-        .flip-button {
-            background-color: #008CFF; /* Modern blue */
-            color: #fff;
-            font-size: 1.2em;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 30px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-
-        .flip-button:hover {
-            transform: scale(1.1);
-            background-color: #005BB5; /* Darker blue on hover */
-        }
-
         /* Main content */
         .main-content {
             padding: 50px 0;
@@ -276,9 +257,6 @@
 
         <!-- Your custom snowblower image on the right -->
         <img src="https://i.imgur.com/i2djyBA.png" alt="Snowblower Right" class="snowblower-right" id="snowblower-right">
-
-        <!-- Button to simulate flipping snowblowers -->
-        <button class="flip-button" id="flipButton" onclick="flipSnowblower()">Flip a Snowblower!</button>
     </div>
 
     <div class="main-content">
@@ -321,7 +299,7 @@
     </div>
 
     <script>
-        let currentAmount = 3000; // Starting amount
+        let currentAmount = 250; // Change the amount here (e.g., $250)
         const goalAmount = 5000;
 
         function updateProgressBar() {
